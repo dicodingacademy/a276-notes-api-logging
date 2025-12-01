@@ -1,29 +1,12 @@
-const routes = (handler) => [
-  {
-    method: 'POST',
-    path: '/notes',
-    handler: handler.postNoteHandler,
-  },
-  {
-    method: 'GET',
-    path: '/notes',
-    handler: handler.getAllNotesHandler,
-  },
-  {
-    method: 'GET',
-    path: '/notes/{id}',
-    handler: handler.getNoteByIdHandler,
-  },
-  {
-    method: 'PUT',
-    path: '/notes/{id}',
-    handler: handler.editNoteByIdHandler,
-  },
-  {
-    method: 'DELETE',
-    path: '/notes/{id}',
-    handler: handler.deleteNoteByIdHandler,
-  },
-];
+import { Router } from 'express';
+import { postNote, getAllNotes, getNoteById, editNoteById, deleteNoteById } from '../notes/controller.js';
 
-module.exports = routes;
+const router = Router();
+
+router.post('/notes', postNote);
+router.get('/notes', getAllNotes);
+router.get('/notes/:id', getNoteById);
+router.put('/notes/:id', editNoteById);
+router.delete('/notes/:id', deleteNoteById);
+
+export default router;

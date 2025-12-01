@@ -1,41 +1,17 @@
-const Hapi = require('@hapi/hapi');
-const notes = require('./api/notes');
-const logger = require('./logger/index');
-const ClientError = require('./exceptions/ClientError');
-const os = require('os');
-require('dotenv').config();
+import express from 'express';
+import notes from './api/notes/routes.js';
+import dotenv from 'dotenv';
+import loggingMiddleware from './logger/middleware.js';
 
-const init = async () => {
-  const server = Hapi.server({
-    host: 'localhost',
-    port: 3000,
-  })
+dotenv.config();
 
-  await server.register(
-    {
-      plugin: notes,
-    },
-  )
+const app = express();
+const port = 3000;
 
-  server.ext('onPreResponse', (request, h) => {
-    const { response } = request;
+app.use(express.json());
+app.use(loggingMiddleware);
+app.use('/', notes);
 
-    if (response instanceof ClientError) {
-      const newResponse = h.response({
-        status: 'fail',
-        message: response.message,
-      });
-      newResponse.code(response.statusCode);
-      return newResponse;
-    }
-
-    logger.log('info', `userIP=${request.info.remoteAddress}, host=${os.hostname}, method=${request.method}, path=${request.path}, payload=${JSON.stringify(response.source)}`);
-    
-    return h.continue;
-  });
-
-  await server.start();
-  console.log(`server start at ${server.info.uri}`);
-}
-
-init();
+app.listen(port, () => {
+  console.log(`server start at http://localhost:${port}`);
+});

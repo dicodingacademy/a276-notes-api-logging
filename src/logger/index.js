@@ -1,8 +1,8 @@
-const winston = require('winston');
-const WinstonCloudWatch = require('winston-cloudwatch');
-require('dotenv').config();
+import WinstonCloudWatch from 'winston-cloudwatch';
+import winston from 'winston';
+import 'winston-daily-rotate-file';
 
-const logger = new winston.createLogger({
+const logger = winston.createLogger({
 	format: winston.format.json(),
 	transports: [
 		new (winston.transports.Console)({
@@ -24,4 +24,4 @@ if (process.env.NODE_ENV === 'production') {
 	logger.add(new WinstonCloudWatch(cloudwatchConfig))
 }
 
-module.exports = logger;
+export default logger;
