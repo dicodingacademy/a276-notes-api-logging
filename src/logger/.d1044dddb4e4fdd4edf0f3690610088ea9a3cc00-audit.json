@@ -6,9 +6,9 @@
     "auditLog": "/home/aras/javascript-projects/a276-notes-api-logging/src/logger/.d1044dddb4e4fdd4edf0f3690610088ea9a3cc00-audit.json",
     "files": [
         {
-            "date": 1708932722409,
-            "name": "/home/aras/javascript-projects/a276-notes-api-logging/src/logger/application-2024-02-26-14.log",
-            "hash": "9f56d93df31796fe190ebc5a5b61a9a69779f1603c0d7e3a9822500facbc52a9"
+            "date": 1764577314921,
+            "name": "/home/aras/javascript-projects/a276-notes-api-logging/src/logger/application-2025-12-01-15.log",
+            "hash": "0a80d162cbf71c3a777dc23f55971a4cf38691023b82aad86dfe11dd91796b38"
         }
     ],
     "hashType": "sha256"

@@ -1,6 +1,9 @@
-const path = require('path');
-const { createLogger, format, transports } = require('winston');
-require('winston-daily-rotate-file');
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { createLogger, format, transports } from 'winston';
+import 'winston-daily-rotate-file';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 var transport = new transports.DailyRotateFile({
   filename: path.join(__dirname, 'application-%DATE%.log'),
@@ -26,4 +29,4 @@ const logger = createLogger({
   ]
 });
 
-module.exports = logger;
+export default logger;
