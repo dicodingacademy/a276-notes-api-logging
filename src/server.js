@@ -28,8 +28,9 @@ const init = async () => {
       newResponse.code(response.statusCode);
       return newResponse;
     }
+
+    logger.log('info', `userIP=${request.info.remoteAddress}, host=${os.hostname}, method=${request.method}, path=${request.path}, payload=${JSON.stringify(response.source)}`);
     
-    logger.log('info', `userIP=${request.info.remoteAddress}, host=${os.hostname}, method=${request.method}, path=${request.path}, payload=${JSON.stringify(response.output.payload)}`);
     return h.continue;
   });
 

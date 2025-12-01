@@ -1,5 +1,7 @@
 const winston = require('winston');
 const WinstonCloudWatch = require('winston-cloudwatch');
+require('dotenv').config();
+
 const logger = new winston.createLogger({
 	format: winston.format.json(),
 	transports: [
@@ -12,8 +14,8 @@ const logger = new winston.createLogger({
 
 if (process.env.NODE_ENV === 'production') {
 	const cloudwatchConfig = {
-		logGroupName: 'Application-Log-Group',
-		logStreamName: 'Application-Log-Stream',
+		logGroupName: process.env.LOG_GROUP_NAME,
+		logStreamName: process.env.LOG_STREAM_NAME,
 		awsAccessKeyId: process.env.AWS_ACCESS_KEY_ID,
 		awsSecretKey: process.env.AWS_SECRET_ACCESS_KEY,
 		awsRegion: process.env.AWS_REGION,
