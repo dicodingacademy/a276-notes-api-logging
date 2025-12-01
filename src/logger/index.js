@@ -1,6 +1,5 @@
 import WinstonCloudWatch from 'winston-cloudwatch';
 import winston from 'winston';
-import 'winston-daily-rotate-file';
 
 const logger = winston.createLogger({
 	format: winston.format.json(),
